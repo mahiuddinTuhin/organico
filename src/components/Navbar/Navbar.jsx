@@ -1,106 +1,116 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { FaShoppingCart, FaUserAlt } from "react-icons/Fa";
+import { HiMenuAlt1, HiX } from "react-icons/hi";
+import logo from "./../../assets/ORGANICO-logo.png";
 
-export default function Navbar() {
-  const [navbar, setNavbar] = useState(false);
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const navItem = (
+    <>
+      <li>
+        <a>About</a>
+      </li>
+      <li>
+        <a>Shop</a>
+      </li>
+      <li>
+        <a>Subscribe & Save</a>
+      </li>
+      <li>
+        <a>Bundle</a>
+      </li>
+      <li>
+        <a>Recipes</a>
+      </li>
+      <li>
+        <a>Find</a>
+      </li>
+      <li>
+        <a>More</a>
+      </li>
+    </>
+  );
 
   return (
-    <nav className="w-full shadow">
-      <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
-        <div>
-          <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <a href="javascript:void(0)">
-              <h2 className="text-2xl font-bold text-white">LOGO</h2>
-            </a>
-            <div className="md:hidden">
-              <button
-                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
-                onClick={() => setNavbar(!navbar)}
-              >
-                {navbar ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-white"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              navbar ? "block" : "hidden"
-            }`}
-          >
-            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">Home</a>
-              </li>
-              <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">Blog</a>
-              </li>
-              <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">About US</a>
-              </li>
-              <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">Contact US</a>
-              </li>
+    <div>
+      <div className="navbar bg-base-100">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              {isOpen === false ? <HiMenuAlt1 className="text-2xl" /> : <HiX />}
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              {navItem}
             </ul>
-
-            <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-              <a
-                href="javascript:void(0)"
-                className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
+          </div>
+          <img
+            src={logo}
+            className="rounded-xl object-contain w-2/3"
+            alt="logo"
+          />
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{navItem}</ul>
+        </div>
+        <div className="navbar-end">
+          <div className="flex-none">
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle">
+                <div className="indicator">
+                  <FaShoppingCart
+                    className="text-2xl"
+                    style={{ color: "ABC480" }}
+                  />
+                  <span className="badge badge-sm indicator-item">8</span>
+                </div>
+              </label>
+              <div
+                tabIndex={0}
+                className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
               >
-                Sign in
-              </a>
-              <a
-                href="javascript:void(0)"
-                className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+                <div className="card-body">
+                  <span className="font-bold text-lg">8 Items</span>
+                  <span className="text-info">Subtotal: $999</span>
+                  <div className="card-actions">
+                    <button className="btn btn-primary btn-block">
+                      View cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="">
+                  <FaUserAlt className="text-2xl" style={{ color: "ABC480" }} />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
-                Sign up
-              </a>
+                <li>
+                  <a className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </a>
+                </li>
+                <li>
+                  <a>Settings</a>
+                </li>
+                <li>
+                  <a>Logout</a>
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-        <div className="hidden space-x-2 md:inline-block">
-          <a
-            href="javascript:void(0)"
-            className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-          >
-            Sign in
-          </a>
-          <a
-            href="javascript:void(0)"
-            className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-          >
-            Sign up
-          </a>
         </div>
       </div>
-    </nav>
+    </div>
   );
-}
+};
+
+export default Navbar;
