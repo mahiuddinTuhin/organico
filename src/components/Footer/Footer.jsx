@@ -7,7 +7,7 @@ const Footer = () => {
     <div>
       <footer
         style={{ backgroundColor: "#ABC480" }}
-        className="footer footer-center lg:footer p-10 text-zinc-600 justify-items-center justify-evenly no-underline text-xl lg:text-lg"
+        className="footer footer-center lg:footer p-10 text-zinc-600 justify-items-center justify-evenly no-underline text-xl lg:text-md"
       >
         <div>
           <span className="border-b-2 border-slate-800 font-black">

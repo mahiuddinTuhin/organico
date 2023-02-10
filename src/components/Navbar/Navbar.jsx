@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaShoppingCart, FaUserAlt } from "react-icons/Fa";
-import { HiMenuAlt1, HiX } from "react-icons/hi";
+import { HiMenuAlt1 } from "react-icons/hi";
 import logo from "./../../assets/ORGANICO-logo.png";
 
 const Navbar = () => {
@@ -37,7 +37,7 @@ const Navbar = () => {
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              {isOpen === false ? <HiMenuAlt1 className="text-2xl" /> : <HiX />}
+              <HiMenuAlt1 className="text-2xl" />
             </label>
             <ul
               tabIndex={0}
