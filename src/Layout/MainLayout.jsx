@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="font-gelion">
       <Navbar />
       <Outlet />
       <Footer />

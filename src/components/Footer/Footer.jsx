@@ -4,11 +4,8 @@ import { FiInstagram } from "react-icons/Fi";
 import { IoPeople } from "react-icons/io5";
 const Footer = () => {
   return (
-    <div>
-      <footer
-        style={{ backgroundColor: "#ABC480" }}
-        className="footer footer-center lg:footer p-10 text-zinc-600 justify-items-center justify-evenly no-underline text-xl lg:text-md"
-      >
+    <div className="min-w-full" style={{ backgroundColor: "#ABC480" }}>
+      <footer className="footer footer-center  sm:footer p-10 text-zinc-600 justify-items-center justify-evenly no-underline text-xl lg:text-md">
         <div>
           <span className="border-b-2 border-slate-800 font-black">
             ONLINE SHOP
