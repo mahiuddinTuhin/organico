@@ -74,7 +74,7 @@ const Footer = () => {
             GET E-NEWS
           </span>
           <p>They're helpful and funny (sometimes, we try)!</p>
-          <div className="form-control w-80 my-8 pl-4">
+          <div className="form-control bg-inherit border-none w-80 my-8 pl-4">
             <div className="relative">
               <input
                 type="text"
@@ -87,7 +87,7 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <span className="border-b-2 border-slate-800 font-black">
+            <span className="border-b-2 -ml-4 border-slate-800 font-black">
               FOLLOW US ON SOICAL MEDIA
             </span>
             <div className="flex text-xl mt-4 justify-center lg:justify-start">
