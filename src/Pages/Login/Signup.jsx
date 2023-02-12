@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 const Signup = () => {
   const {
     register,
@@ -8,7 +9,15 @@ const Signup = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { signUpWithEmail } = useContext(AuthContext);
+  const onSubmit = (data) => {
+    signUpWithEmail(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => console.error(err));
+  };
 
   return (
     <div className="mx-auto my-[183px] ">

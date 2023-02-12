@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaShoppingCart, FaUserAlt } from "react-icons/Fa";
 import { HiMenuAlt1 } from "react-icons/hi";
+import { AuthContext } from "../../context/AuthProvider";
 import logo from "./../../assets/ORGANICO-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, signingOut } = useContext(AuthContext);
+
+  const handleSignout = () => {
+    signingOut().then(() => {
+      console.log("signout successfully");
+    });
+  };
   const navItem = (
     <>
       <li>
@@ -92,18 +100,24 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
+                {user?.uid && (
+                  <div>
+                    <li>
+                      <a className="justify-between">
+                        Profile
+                        <span className="badge">New</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>Settings</a>
+                    </li>
+                    <li>
+                      <a onClick={() => handleSignout()} className="">
+                        Logout
+                      </a>
+                    </li>
+                  </div>
+                )}
               </ul>
             </div>
           </div>

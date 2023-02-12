@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 const Login = () => {
   const {
     register,
@@ -8,7 +9,27 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const [loginError, setLoginError] = useState("");
+  const { signInWithEmail } = useContext(AuthContext);
+  const onSubmit = (data) => {
+    setLoginError("");
+    signInWithEmail(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => {
+        console.error(err.message);
+        err?.message?.includes("wrong-password")
+          ? setLoginError("Email or password incorrect")
+          : err?.message?.includes("temporarily disabled")
+          ? setLoginError(
+              `This account has been temporarily disabled due to many failed login attempts. \n
+              You can immediately restore it by resetting your password or you can try again later.`
+            )
+          : null;
+      });
+  };
 
   return (
     <div className="mx-auto my-[183px] ">
@@ -47,6 +68,9 @@ const Login = () => {
           type="password"
           placeholder="Password"
         />
+        {loginError && (
+          <p className="text-red-600 -mt-8 mb-2 max-w-xl">{loginError}</p>
+        )}
 
         <button
           className="rounded-none text-center mx-auto w-[686px] py-3 pl-6  border-2 font-normal text-base leading-[20px] tracking-wide text-[#fff] mb-4 bg-[#01BFD7]"
